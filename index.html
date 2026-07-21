@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#1a1a2e">
+  <title>Food Diary</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Setup Screen -->
+  <div id="setup-screen" class="screen">
+    <div class="setup-container">
+      <h1>🍽️ Food Diary</h1>
+      <p>Connect to GitHub to sync your log across devices.</p>
+      <div class="form-group">
+        <label for="pat-input">GitHub Personal Access Token</label>
+        <input type="password" id="pat-input" placeholder="ghp_..." autocomplete="off">
+        <small>Needs <code>repo</code> scope. <a href="https://github.com/settings/tokens/new?scopes=repo&description=Food+Diary" target="_blank">Create one →</a></small>
+      </div>
+      <div class="form-group">
+        <label for="repo-input">Repository</label>
+        <input type="text" id="repo-input" placeholder="JimmyCalhoun/food-diary" value="JimmyCalhoun/food-diary">
+      </div>
+      <button id="setup-btn" class="btn btn-primary btn-lg">Connect &amp; Start</button>
+      <div id="setup-error" class="error hidden"></div>
+    </div>
+  </div>
+
+  <!-- Main App -->
+  <div id="app-screen" class="screen hidden">
+    <!-- Header -->
+    <header>
+      <h1>🍽️ Food Diary</h1>
+      <div class="header-actions">
+        <button id="history-btn" class="btn btn-sm" title="History">📅</button>
+        <button id="export-btn" class="btn btn-sm" title="Export">📤</button>
+        <button id="settings-btn" class="btn btn-sm" title="Settings">⚙️</button>
+      </div>
+    </header>
+
+    <!-- Quick Log Buttons -->
+    <section id="quick-log">
+      <div id="time-label" class="section-label"></div>
+      <div id="quick-buttons" class="button-grid"></div>
+
+      <div class="section-label">All Items</div>
+      <button id="show-all-btn" class="btn btn-sm btn-outline" style="margin-bottom:12px;">Show all quick buttons</button>
+      <div id="all-buttons" class="button-grid hidden"></div>
+    </section>
+
+    <!-- Custom Entry -->
+    <section id="custom-entry">
+      <div class="section-label">Custom Entry</div>
+      <div class="custom-row">
+        <select id="custom-category">
+          <option value="food">🍔 Food</option>
+          <option value="drink">🥤 Drink</option>
+          <option value="snack">🍿 Snack</option>
+          <option value="supplement">💊 Supplement</option>
+        </select>
+        <input type="text" id="custom-input" placeholder="What did you have?">
+        <button id="custom-submit" class="btn btn-primary">Log</button>
+      </div>
+      <input type="text" id="custom-notes" placeholder="Notes (optional)">
+    </section>
+
+    <!-- Today's Log -->
+    <section id="today-log">
+      <div class="section-label">Today's Log</div>
+      <div id="today-entries" class="entries-list">
+        <div class="loading">Loading...</div>
+      </div>
+    </section>
+
+    <!-- Toast -->
+    <div id="toast" class="toast hidden"></div>
+  </div>
+
+  <!-- History Modal -->
+  <div id="history-modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>📅 History</h2>
+        <button id="history-close" class="btn btn-sm">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="date-nav">
+          <button id="date-prev" class="btn btn-sm">◀</button>
+          <span id="date-label"></span>
+          <button id="date-next" class="btn btn-sm">▶</button>
+        </div>
+        <div id="history-entries" class="entries-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="settings-modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>⚙️ Settings</h2>
+        <button id="settings-close" class="btn btn-sm">✕</button>
+      </div>
+      <div class="modal-body">
+        <h3>Quick Buttons</h3>
+        <div id="button-editor"></div>
+        <button id="add-button-btn" class="btn btn-sm btn-outline" style="margin-top:12px;">+ Add Quick Button</button>
+        <hr>
+        <button id="disconnect-btn" class="btn btn-sm btn-danger">Disconnect &amp; Clear Token</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
