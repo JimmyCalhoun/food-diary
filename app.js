@@ -19,6 +19,8 @@
     { id: 'pizza',       label: 'Pizza Slice',         emoji: '🍕', category: 'lunch', startHour: 10, endHour: 13 },
     // Beer (1pm+)
     { id: 'ipa',         label: '16oz IPA Beer',       emoji: '🍺', category: 'beer', startHour: 13, endHour: 24 },
+    // All day
+    { id: 'dripdrop',    label: 'DripDrop Electrolyte', emoji: '💧', category: 'drink', startHour: 0,  endHour: 24 },
   ];
 
   // ── State ──────────────────────────────────────────────────────────
