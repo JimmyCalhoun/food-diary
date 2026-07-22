@@ -1,4 +1,4 @@
-const CACHE = 'food-diary-v1';
+const CACHE = 'food-diary-v2';
 const ASSETS = ['/', '/index.html', '/style.css', '/app.js', '/manifest.json'];
 
 self.addEventListener('install', (e) => {
@@ -16,12 +16,16 @@ self.addEventListener('activate', (e) => {
 });
 
 self.addEventListener('fetch', (e) => {
-  // Network-first for API calls, cache-first for assets
-  if (e.request.url.includes('api.github.com')) {
-    e.respondWith(fetch(e.request));
-  } else {
-    e.respondWith(
-      caches.match(e.request).then(cached => cached || fetch(e.request))
-    );
-  }
+  // Network-first for everything — always get latest, fall back to cache offline
+  e.respondWith(
+    fetch(e.request)
+      .then(res => {
+        if (res.ok && e.request.method === 'GET' && !e.request.url.includes('api.github.com')) {
+          const clone = res.clone();
+          caches.open(CACHE).then(c => c.put(e.request, clone));
+        }
+        return res;
+      })
+      .catch(() => caches.match(e.request))
+  );
 });
