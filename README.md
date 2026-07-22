@@ -22,6 +22,15 @@ A lightweight GitHub Pages app for quick food & drink logging. One-tap buttons f
 
 Each food/drink entry is posted as a comment on a dedicated GitHub Issue in this repo. The comment contains both human-readable text and a JSON payload for programmatic analysis. No server required — everything runs client-side.
 
+## Active Trials
+
+### ☕ No-Coffee Trial (LPR/Reflux)
+- **Start date:** 2026-07-22
+- **Duration:** 3–4 weeks (end ~2026-08-12 to 2026-08-19)
+- **Goal:** Determine if coffee compounds (not caffeine alone) drive LPR symptoms (throat clearing, raspy voice, PND, Tums usage)
+- **Rules:** No coffee of any kind (espresso, cold brew, drip). Caffeine via low-acid alternatives only.
+- **Tracking:** Log all drinks + any Tums/antacid usage + symptom notes
+
 ## Data Analysis
 
 Export your log as CSV and analyze with any tool (Excel, Python/pandas, ChatGPT, etc.) to identify patterns, triggers, or dietary issues.
