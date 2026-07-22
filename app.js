@@ -12,6 +12,7 @@
     { id: 'cold-brew',  label: 'Cold Brew',                emoji: '🧊', category: 'drink', startHour: 6,  endHour: 12 },
     { id: 'hot-coffee', label: 'Hot Brewed Coffee',         emoji: '☕', category: 'drink', startHour: 6,  endHour: 12 },
     { id: 'celsius',    label: 'Celsius Packet',            emoji: '⚡', category: 'drink', startHour: 6,  endHour: 12 },
+    { id: 'earl-grey', label: 'Earl Grey Tea',              emoji: '🫖', category: 'drink', startHour: 6,  endHour: 12 },
     // Lunch (10am-1pm)
     { id: 'alfredo',     label: 'Chicken Alfredo',     emoji: '🍝', category: 'lunch', startHour: 10, endHour: 13 },
     { id: 'enchiladas',  label: 'Chicken Enchiladas',  emoji: '🌯', category: 'lunch', startHour: 10, endHour: 13 },
