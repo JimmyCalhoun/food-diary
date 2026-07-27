@@ -160,8 +160,15 @@
     return '🌙 Night';
   }
 
+  function localDateStr(date) {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+  }
+
   function todayStr() {
-    return new Date().toISOString().slice(0, 10);
+    return localDateStr(new Date());
   }
 
   function formatTime(iso) {
@@ -302,13 +309,13 @@
     $('#date-prev').addEventListener('click', () => {
       const d = new Date(historyDate + 'T12:00:00');
       d.setDate(d.getDate() - 1);
-      historyDate = d.toISOString().slice(0, 10);
+      historyDate = localDateStr(d);
       renderHistory();
     });
     $('#date-next').addEventListener('click', () => {
       const d = new Date(historyDate + 'T12:00:00');
       d.setDate(d.getDate() + 1);
-      historyDate = d.toISOString().slice(0, 10);
+      historyDate = localDateStr(d);
       renderHistory();
     });
   }
@@ -316,7 +323,7 @@
   function renderHistory() {
     $('#date-label').textContent = formatDate(historyDate);
     const dayEntries = entries
-      .filter(e => e.timestamp.startsWith(historyDate))
+      .filter(e => localDateStr(new Date(e.timestamp)) === historyDate)
       .sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
 
     if (!dayEntries.length) {
